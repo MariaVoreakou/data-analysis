@@ -6,13 +6,17 @@ import os
 # Load the dataset
 data = pd.read_csv('data/Data.csv')
 
-# Select only numeric columns
+columns_to_convert = ['Avg_Power_Consumption_mW', 'avg_Message_Rate']
+for col in columns_to_convert:
+    data[col] = data[col].str.replace(',', '.').astype(float)
+
+
 numeric_data = data.select_dtypes(include=['float64', 'int64'])
 
 # Calculate the Spearman's rank correlation coefficient matrix
 spearman_correlation = numeric_data.corr(method="spearman")
 
-# Create the output directory if it doesn't exist
+# Create the output directory
 output_dir = 'output/'
 os.makedirs(output_dir, exist_ok=True)
 

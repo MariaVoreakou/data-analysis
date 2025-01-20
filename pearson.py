@@ -7,19 +7,15 @@ import os
 file_path = 'data/Data.csv'
 data = pd.read_csv(file_path)
 
-# Extract relevant columns and clean column names
-data_subset = data[["Routing_Keys", "avg_Message_Rate", "Queues ", "Avg_Power_Consumption_mW"]].copy()
-data_subset.rename(columns={"Queues ": "Queues", "Avg_Power_Consumption_mW": "avg_Power_Consumption"}, inplace=True)
+columns_to_convert = ['Avg_Power_Consumption_mW', 'avg_Message_Rate']
+for col in columns_to_convert:
+    data[col] = data[col].str.replace(',', '.').astype(float)
 
-# Clean and convert columns to numeric types
-data_subset["avg_Message_Rate"] = data_subset["avg_Message_Rate"].replace(',', '.', regex=True).astype(float)
-data_subset["Routing_Keys"] = data_subset["Routing_Keys"].astype(int)
-data_subset["Queues"] = data_subset["Queues"].astype(int)
-data_subset["avg_Power_Consumption"] = data_subset["avg_Power_Consumption"].replace(',', '.', regex=True).astype(float)
 
+numeric_data = data.select_dtypes(include=['float64', 'int64'])
 
 # Calculate the Pearson correlation matrix
-pearson_correlation = data_subset.corr(method="pearson")
+pearson_correlation = numeric_data.corr(method="pearson")
 
 # Create the output directory if it doesn't exist
 output_dir = 'output/'
