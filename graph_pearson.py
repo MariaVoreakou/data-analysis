@@ -18,7 +18,7 @@ numeric_data = data.select_dtypes(include=['float64', 'int64'])
 pearson_correlation = numeric_data.corr(method="pearson")
 
 # Create the output directory if it doesn't exist
-output_dir = 'output/'
+output_dir = 'output/Graphs'
 os.makedirs(output_dir, exist_ok=True)
 
 # Create and save the heatmap

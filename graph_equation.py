@@ -62,7 +62,7 @@ plt.legend()
 plt.grid(True)
 
 # Save the graph
-output_dir = 'output/PowerConsumption'
+output_dir = 'output/Graphs'
 os.makedirs(output_dir, exist_ok=True)
 output_path = os.path.join(output_dir, "Predicted_vs_Actual_Power_Consumption.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')

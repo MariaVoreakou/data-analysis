@@ -17,7 +17,7 @@ numeric_data = data.select_dtypes(include=['float64', 'int64'])
 spearman_correlation = numeric_data.corr(method="spearman")
 
 # Create the output directory
-output_dir = 'output/'
+output_dir = 'output/Graphs'
 os.makedirs(output_dir, exist_ok=True)
 
 # Save the heatmap as a PNG file
