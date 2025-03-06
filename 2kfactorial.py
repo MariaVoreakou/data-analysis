@@ -73,10 +73,10 @@ plt.figure(figsize=(12, 8))
 corr_matrix = summary_df.drop(columns=["Experiment name"]).corr()  # Remove non-numeric column
 sns.heatmap(corr_matrix, annot=True, fmt=".2f", cmap="coolwarm", linewidths=0.5)
 plt.title("Correlation Heatmap of Factors and Responses")
-plt.show()
 
 output_path = os.path.join(output_dir, "Correlation_Heatmap_Factors_Responses.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.show()
 plt.close()
 
 print(f"Correlation heatmap saved to: {output_path}")
@@ -89,10 +89,11 @@ response_var = "Avg_Power_Consumption_mW"  # Change to other responses as needed
 # Pairplot to visualize relationships
 sns.pairplot(summary_df, vars=["Messages_rate", "Routing_Keys", "Exchanges", "Consumers-Queues", response_var], diag_kind="kde")
 plt.title("Pairplot")
-plt.show()
+
 
 output_path = os.path.join(output_dir, "Pairplot.png")
 plt.savefig(output_path, dpi=300, bbox_inches='tight')
+plt.show()
 plt.close()
 
 print(f"Pairplot saved to: {output_path}")
